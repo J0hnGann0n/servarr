@@ -7,9 +7,9 @@ services:
       - PGID=${SERVARR_PGID:-1000}
       - TZ=Europe/Rome
     volumes:
-      - ${RADARR_CONFIG_PATH:-./data/config/radarr}:/config
-      - ${RADARR_MOVIES_PATH:-./data/movies}:/movies:wr
-      - ${RADARR_DOWNLOAD_PATH:-./data/download}:/downloads:wr
+      - ${DATA_ROOT}${RADARR_CONFIG_PATH}/radarr:/config
+      - ${DATA_ROOT}${RADARR_MOVIES_PATH}:/movies:wr
+      - ${DATA_ROOT}${RADARR_DOWNLOAD_PATH}:/downloads:wr
     ports:
       - 7878:7878
     restart: unless-stopped
@@ -22,9 +22,9 @@ services:
       - PGID=${SERVARR_PGID:-1000}
       - TZ=Europe/Rome
     volumes:
-      - ${SONARR_CONFIG_PATH:-./data/config/sonarr}:/config
-      - ${SONARR_TV_PATH:-./data/tv}:/tv:wr
-      - ${SONARR_DOWNLOAD_PATH:-./data/download}:/downloads:wr
+      - ${DATA_ROOT}${SONARR_CONFIG_PATH}/sonarr:/config
+      - ${DATA_ROOT}${SONARR_TV_PATH}:/tv:wr
+      - ${DATA_ROOT}${SONARR_DOWNLOAD_PATH}:/downloads:wr
     ports:
       - 8989:8989
     restart: unless-stopped
@@ -37,9 +37,9 @@ services:
       - PGID=${SERVARR_PGID:-1000}
       - TZ=Europe/Rome
     volumes:
-      - ${LIDARR_CONFIG_PATH:-./data/config/lidarr}:/config
-      - ${LIDARR_MUSIC_PATH:-./data/music}:/music:wr
-      - ${LIDARR_DOWNLOAD_PATH:-./data/download}:/downloads:wr
+      - ${DATA_ROOT}${LIDARR_CONFIG_PATH}/lidarr:/config
+      - ${DATA_ROOT}${LIDARR_MUSIC_PATH}:/music:wr
+      - ${DATA_ROOT}${LIDARR_DOWNLOAD_PATH}:/downloads:wr
     ports:
       - 8686:8686
     restart: unless-stopped
@@ -52,14 +52,14 @@ services:
       - PGID=${SERVARR_PGID:-1000}
       - TZ=Europe/Rome
     volumes:
-      - ${READARR_CONFIG_PATH:-./data/config/readarr}:/config
-      - ${READARR_BOOK_PATH:-./data/books}:/books:wr
-      - ${READARR_DOWNLOAD_PATH:-./data/download}:/downloads:wr
+      - ${DATA_ROOT}${READARR_CONFIG_PATH}/readarr:/config
+      - ${DATA_ROOT}${READARR_BOOK_PATH}:/books:wr
+      - ${DATA_ROOT}${READARR_DOWNLOAD_PATH}:/downloads:wr
     ports:
       - 8787:8787
     restart: unless-stopped
     privileged: true
-  
+
   prowlarr:
     image: lscr.io/linuxserver/prowlarr:nightly
     environment:
@@ -67,7 +67,7 @@ services:
       - PGID=${SERVARR_PGID:-1000}
       - TZ=Europe/Rome
     volumes:
-      - ${PROWLARR_CONFIG_PATH:-./data/config/prowlarr}:/config
+      - ${DATA_ROOT}${PROWLARR_CONFIG_PATH}/prowlarr:/config
     ports:
       - 9696:9696
     restart: unless-stopped
